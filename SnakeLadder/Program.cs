@@ -21,7 +21,7 @@ namespace SnakeLadder
 
         }
     }
-    public class CheckOptions
+    public class PlayerStatus
     {
 
         const int NO_PLAY = 1;
@@ -63,7 +63,12 @@ namespace SnakeLadder
                         break;
                 }
                 Console.WriteLine("Current Position is : " + positionObj.position);
+                if (positionObj.position == 100)
+                {
+                    Console.WriteLine("Player won the game");
+                }
             }
         }
     }
 }
+
