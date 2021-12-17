@@ -2,13 +2,20 @@
 
 namespace SnakeLadder
 {
-    public class InitialPositionOfPlayer
+
+    public class RollTheDie
     {
-        int position = 0;
-        static void Main(String[] args)
+
+        public static int rollDie()
         {
-            InitialPositionOfPlayer c1 = new InitialPositionOfPlayer();
-            Console.WriteLine("Starting Position of Player is : " + c1.position);
+            Random random = new Random();
+            return random.Next(0, 7);
+        }
+
+        public static void Main(String[] args)
+        {
+
+            Console.WriteLine("Result of Dice Roll :  " + rollDie());
         }
     }
 }
