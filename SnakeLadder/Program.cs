@@ -21,7 +21,7 @@ namespace SnakeLadder
 
         }
     }
-    public class PlayerStatus
+    public class ExactWinning
     {
 
         const int NO_PLAY = 1;
