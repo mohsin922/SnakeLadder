@@ -1,41 +1,37 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SnakeLadder
-{
+namespace SnakeLadder {
     class InitialPositionOfPlayer
     {
         public int position = 0;
 
     }
-
     class Dice
     {
+
         public int dieRoll()
         {
             Random random = new Random();
             return random.Next(0, 7);
-
-
-
         }
     }
-    public class PlayerStatus
+
+    public class DieRollCount
     {
 
         const int NO_PLAY = 1;
         const int LADDER = 2;
         const int SNAKE = 3;
+
         public static int check()
         {
             Random random = new Random();
-            return random.Next(1, 4);
+            return random.Next(1,4);
         }
 
         public static void Main(String[] args)
         {
 
+            int dieRolls = 0;
 
             InitialPositionOfPlayer positionObj = new InitialPositionOfPlayer();
             Dice dice = new Dice();
@@ -44,6 +40,7 @@ namespace SnakeLadder
             while (positionObj.position < 100)
             {
                 int die_number = dice.dieRoll();
+                dieRolls += 1;
 
                 switch (check())
                 {
@@ -68,7 +65,8 @@ namespace SnakeLadder
                     Console.WriteLine("Player won the game");
                 }
             }
+            Console.WriteLine("Number of time die rolled is : " + dieRolls);
         }
+
     }
 }
-
