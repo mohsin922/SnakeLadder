@@ -9,7 +9,7 @@ namespace SnakeLadder
         public static int rollDie()
         {
             Random random = new Random();
-            return random.Next(0, 7);
+            return random.Next(1, 7);
         }
 
         public static void Main(String[] args)
