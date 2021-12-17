@@ -11,11 +11,11 @@ namespace SnakeLadder {
         public int dieRoll()
         {
             Random random = new Random();
-            return random.Next(0, 7);
+            return random.Next(1,7);
         }
-    }
 
-    public class DieRollCount
+    }
+    public class ResultOfTheGame
     {
 
         const int NO_PLAY = 1;
@@ -32,41 +32,63 @@ namespace SnakeLadder {
         {
 
             int dieRolls = 0;
+            Boolean is_player_1 = true;
+            int player1 = 0;
+            int player2 = 0;
 
             InitialPositionOfPlayer positionObj = new InitialPositionOfPlayer();
             Dice dice = new Dice();
 
 
-            while (positionObj.position < 100)
+            while (player1 < 100 && player2 < 100)
             {
                 int die_number = dice.dieRoll();
-                dieRolls += 1;
 
                 switch (check())
                 {
                     case NO_PLAY:
                         break;
                     case LADDER:
-                        if (positionObj.position + die_number <= 100)
+                        if (is_player_1)
                         {
-                            positionObj.position += die_number;
+                            if (player1 + die_number <= 100)
+                            {
+                                player1 += die_number;
+                                is_player_1 = false;
+                            }
+                        }
+                        else if (player2 + die_number <= 100)
+                        {
+                            player2 += die_number;
+                            is_player_1 = true;
                         }
                         break;
                     case SNAKE:
-                        if (positionObj.position - die_number >= 0)
+                        if (is_player_1)
                         {
-                            positionObj.position -= die_number;
+                            if (player1 - die_number >= 0)
+                            {
+                                player1 -= die_number;
+                            }
+                            else
+                                player1 = 0;
                         }
+                        else if (player2 - die_number >= 0)
+                        {
+                            player2 -= die_number;
+                        }
+                        else
+                            player2 = 0;
                         break;
                 }
-                Console.WriteLine("Current Position is : " + positionObj.position);
-                if (positionObj.position == 100)
-                {
-                    Console.WriteLine("Player won the game");
-                }
+                is_player_1 = !is_player_1;
+                Console.WriteLine("Position of Player1 : " + player1);
+                Console.WriteLine("Position of Player2 : " + player2);
             }
-            Console.WriteLine("Number of time die rolled is : " + dieRolls);
+            if (player1 == 100)
+                Console.WriteLine("Player1 Won the game");
+            else if (player2 == 100)
+                Console.WriteLine("Player2 Won the game");
         }
-
     }
 }
